@@ -1,10 +1,9 @@
 from actuator_control.strategies import ManualControl, AutoControl
 
 class ActuatorManager:
-    def __init__(self, aktoren, connector_manager, db):
+    def __init__(self, aktoren, connector_manager):
         self.aktoren = aktoren
         self.cm = connector_manager
-        self.db = db
         self.strategies = {
             'manual': ManualControl(connector_manager),
             'auto': AutoControl()

@@ -1,7 +1,16 @@
 #!/bin/bash
+set -a
+source .env
+set +a
 
-# Aktiviere das virtuelle Environment
-source venv/bin/activate
+# Image neu bauen
+docker build -t smart_kip_control_actor .
 
-# Starte das Python-Programm
-python main.py
+# Container starten
+docker run -d \
+  --name control-app \
+  --restart unless-stopped \
+  --network host \
+  --privileged \
+  --device /dev/gpiomem \
+  smart_kip_control_actor
