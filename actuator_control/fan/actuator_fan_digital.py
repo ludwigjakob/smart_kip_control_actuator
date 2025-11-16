@@ -4,7 +4,7 @@ from debug import Debugger
 
 debug = Debugger()
 
-class Fan(Actuator):
+class FanDigital(Actuator):
     def __init__(self, ena, in1, in2):
         GPIO.setup([ena, in1, in2], GPIO.OUT)
         GPIO.output(in1, GPIO.HIGH)
@@ -12,7 +12,7 @@ class Fan(Actuator):
         self.pwm = GPIO.PWM(ena, 1000)
         self.pwm.start(0)
 
-    def set_duty_cycle(self, value):
+    def activate(self, value):
         self.pwm.ChangeDutyCycle(value)
         debug.log(f"Current Fan Dutycycle: {value}", label="Fan Dutycycle")
 

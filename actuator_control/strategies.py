@@ -9,7 +9,7 @@ class ManualControl(ControlStrategy):
 
     def apply(self, aktor):
         duty = self.cm.connectors["mode"].get_fan_speed()
-        aktor.set_duty_cycle(duty)
+        aktor.activate(duty)
 
 
 class AutoControl(ControlStrategy):
@@ -18,4 +18,4 @@ class AutoControl(ControlStrategy):
 
     def apply(self, aktor):
         debug.log("[AUTO MODE]", label="AutoControl")
-        aktor.set_duty_cycle(0)
+        aktor.activate(0)

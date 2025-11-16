@@ -3,7 +3,11 @@ from abc import ABC, abstractmethod
 
 class Actuator(ABC):
     @abstractmethod
-    def set_duty_cycle(self, value: int): pass
+    def activate(self, value: int): pass
+
+    @abstractmethod
+    def stop(self, value: int): pass
+
 
 class ControlStrategy(ABC):
     @abstractmethod
