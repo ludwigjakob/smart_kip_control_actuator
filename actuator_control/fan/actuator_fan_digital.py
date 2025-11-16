@@ -5,17 +5,24 @@ from debug import Debugger
 debug = Debugger()
 
 class FanDigital(Actuator):
-    def __init__(self, ena, in1, in2):
-        GPIO.setup([ena, in1, in2], GPIO.OUT)
-        GPIO.output(in1, GPIO.HIGH)
-        GPIO.output(in2, GPIO.LOW)
-        self.pwm = GPIO.PWM(ena, 1000)
-        self.pwm.start(0)
+    def __init__(self, pin: int):
+        self.pin = pin
+        GPIO.setwarnings(False)
+        GPIO.setmode(GPIO.BCM)
+        GPIO.setup(self.pin, GPIO.OUT)
+        GPIO.output(self.pin, GPIO.LOW)  # Initialzustand: aus
 
-    def activate(self, value):
-        self.pwm.ChangeDutyCycle(value)
-        debug.log(f"Current Fan Dutycycle: {value}", label="Fan Dutycycle")
+
+    def activate(self, value: int | None = None):
+        if value is not None and value >= 100:
+            GPIO.output(self.pin, GPIO.HIGH)
+            debug.log(f"Fan activated (digital HIGH, value={value})", label="FanDigital")
+        else:
+            GPIO.output(self.pin, GPIO.LOW)
+            debug.log(f"Fan not activated (value={value})", label="FanDigital")
+
 
     def stop(self):
-        self.pwm.stop()
-        debug.log(f" Fan stop", label="Fan Dutycycle")
+        GPIO.output(self.pin, GPIO.LOW)
+        debug.log("Fan stopped", label="FanDigital")
+

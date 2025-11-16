@@ -16,5 +16,13 @@ def load_fans(config_path="config.json"):
                 frequency=fan_cfg.get("frequency", 1000)
             )
             fans.append(fan)
+        elif fan_cfg["type"] == "digital":
+            fan = FanDigital(
+                pin=fan_cfg["in1"]
+            )
+            fans.append(fan)
+        else:
+            raise ValueError(f"Unbekannter Fan-Typ: {fan_cfg["type"]}")
+
     return fans
 
