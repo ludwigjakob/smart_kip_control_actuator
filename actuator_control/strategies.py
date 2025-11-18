@@ -24,7 +24,7 @@ class AutoControl(ControlStrategy):
         current_temp = self.temp_connector.read()
         # Schwellwert aus MariaDB (z.B. Level 1)
         thresholds = self.threshold_connector.read()
-        threshold_value = thresholds.get(1)  # Level 1 = Hauptschwellwert
+        threshold_value = thresholds.get(100)  # Level 1 = Hauptschwellwert
 
         if current_temp is None or threshold_value is None:
             debug.log("Keine gültigen Daten für AutoControl", label="AutoControl")

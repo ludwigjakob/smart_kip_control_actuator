@@ -1,6 +1,9 @@
 import json
 from actuator_control.fan.actuator_fan_pwm import FanPWM
 from actuator_control.fan.actuator_fan_digital import FanDigital
+from debug import Debugger
+
+debug = Debugger()
 
 def load_fans(config_path="config.json"):
     with open(config_path) as f:
@@ -22,7 +25,7 @@ def load_fans(config_path="config.json"):
             )
             fans.append(fan)
         else:
-            raise ValueError(f"Unbekannter Fan-Typ: {fan_cfg["type"]}")
+            debug.log(f"Unbekannter Fan Typ:{fan_cfg['type']}", label="Fan Factory")
 
     return fans
 
