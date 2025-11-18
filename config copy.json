@@ -1,0 +1,34 @@
+{
+  "mode": "debug",
+  "actors": {
+    "fans": [
+      {
+        "id": "fan1",
+        "type": "pwm",
+        "ena": 18,
+        "in1": 23,
+        "in2": 24,
+        "frequency": 1000
+      },
+      {
+        "id": "fan2",
+        "type": "pwm",
+        "ena": 13,
+        "in1": 5,
+        "in2": 6,
+        "frequency": 1000
+      },
+      {
+        "id": "fan1",
+        "type": "digital",
+        "in1": 16
+      },
+      {
+        "id": "fan2",
+        "type": "digital",
+        "in1": 26
+      }
+    ]
+  }
+
+}
