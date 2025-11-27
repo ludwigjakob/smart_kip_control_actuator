@@ -13,34 +13,35 @@ class SocketTAPOp100(Actuator):
         self.id = id
         self.host = host
         self.cm = connector_manager
-
         self.username = os.getenv("TAPO_USER")
         self.password = os.getenv("TAPO_PASSWORD")
+        self.device = None
+        self.loop = asyncio.new_event_loop()
+        asyncio.set_event_loop(self.loop)
+
+    async def _init_device(self):
+        if self.device is None:
+            self.device = await Discover.discover_single(
+                self.host,
+                username=self.username,
+                password=self.password
+            )
+            await self.device.update()
 
     async def _set_state(self, state: str):
-        """Interne async-Methode zur Steuerung der Tapo-Socket über Kasa."""
-        dev = await Discover.discover_single(
-            self.host,
-            username=self.username,
-            password=self.password
-        )
-        await dev.update()
-
+        await self._init_device()
         if state == "on":
-            await dev.turn_on()
+            await self.device.turn_on()
             debug.log(f"Tapo Socket {self.id} eingeschaltet", label="SocketTAPOp100")
         else:
-            await dev.turn_off()
+            await self.device.turn_off()
             debug.log(f"Tapo Socket {self.id} ausgeschaltet", label="SocketTAPOp100")
 
-
-    def activate(self, value: int | None = None):
-        # Wert aus DB holen
+    def activate(self, value=None):
         socket_state = self.cm.connectors["socket"].read()["state"]
-        
-        asyncio.run(self._set_state(socket_state))
+        self.loop.run_until_complete(self._set_state(socket_state))
 
-    def stop(self, value: int | None = None):
+    def stop(self, value=None):
         self.cm.connectors["socket"].write("off")
-        asyncio.run(self._set_state("off"))
-        debug.log(f"Socket {self.id} stopped", label="SocketActuator")
+        self.loop.run_until_complete(self._set_state("off"))
+        debug.log(f"Socket {self.id} stopped", label="SocketTAPOp100")
