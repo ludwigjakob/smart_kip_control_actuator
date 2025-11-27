@@ -3,11 +3,14 @@ import time
 from actuator_control.actuator_manager import ActuatorManager
 from data_connector.connector_manager import ConnectorManager
 from actuator_control.fan.fan_factory import load_fans
+from actuator_control.socket.socket_factory import load_sockets
 
 connector_manager = ConnectorManager()
 
 fans = load_fans("config.json")
-manager = ActuatorManager(fans, connector_manager)
+sockets = load_sockets("config.json", connector_manager)
+actuators = fans + sockets
+manager = ActuatorManager(actuators, connector_manager)
 
 try:
     while True:
