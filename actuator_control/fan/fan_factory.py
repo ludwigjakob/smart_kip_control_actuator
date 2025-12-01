@@ -1,11 +1,11 @@
 import json
 from actuator_control.fan.actuator_fan_pwm import FanPWM
 from actuator_control.fan.actuator_fan_digital import FanDigital
-from debug import Debugger
+from common.utils.debug import Debugger
 
 debug = Debugger()
 
-def load_fans(config_path="config.json"):
+def load_fans(config_path="common/utils/config.json"):
     with open(config_path) as f:
         config = json.load(f)
 

@@ -1,6 +1,6 @@
 from actuator_control.strategies import ManualControl, AutoControl
-from data_connector.temperature_connector import TemperatureConnector
-from data_connector.threshold_connector import ThresholdConnector
+from common.data_connector.temperature_connector import TemperatureConnector
+from common.data_connector.threshold_connector import ThresholdConnector
 from actuator_control.socket.actuator_socket_tapop100 import SocketTAPOp100
 from actuator_control.fan.actuator_fan_digital import FanDigital
 from actuator_control.fan.actuator_fan_pwm import FanPWM
@@ -19,7 +19,8 @@ class ActuatorManager:
         }
 
     def run(self):
-        mode = self.cm.get("mode")  # z. B. 'manual' oder 'auto'
+        mode_dict = self.cm.get("mode")  # z. B. 'manual' oder 'auto'
+        mode=mode_dict["mode"]
         strategy = self.strategies.get(mode, self.strategies['manual'])
 
         for actuator in self.actuators:

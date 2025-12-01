@@ -1,5 +1,5 @@
 import json
-from debug import Debugger
+from common.utils.debug import Debugger
 from actuator_control.socket.actuator_socket_tapop100 import SocketTAPOp100
 
 debug = Debugger()

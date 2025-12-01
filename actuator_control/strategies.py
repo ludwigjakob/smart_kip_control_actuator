@@ -1,5 +1,5 @@
 from actuator_control.base_actuator import ControlStrategy
-from debug import Debugger
+from common.utils.debug import Debugger
 from actuator_control.fan.actuator_fan_digital import FanDigital
 
 debug = Debugger()
