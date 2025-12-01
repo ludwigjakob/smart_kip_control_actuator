@@ -5,7 +5,7 @@ from common.utils.debug import Debugger
 
 debug = Debugger()
 
-def load_fans(config_path="config.json"):
+def load_fans(config_path="common/utils/config.json"):
     with open(config_path) as f:
         config = json.load(f)
 

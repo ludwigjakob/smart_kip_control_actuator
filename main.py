@@ -7,8 +7,8 @@ from actuator_control.socket.socket_factory import load_sockets
 
 connector_manager = ConnectorManager()
 
-fans = load_fans("config.json")
-sockets = load_sockets("config.json", connector_manager)
+fans = load_fans("common/utils/config.json")
+sockets = load_sockets("common/utils/config.json", connector_manager)
 actuators = fans + sockets
 manager = ActuatorManager(actuators, connector_manager)
 
