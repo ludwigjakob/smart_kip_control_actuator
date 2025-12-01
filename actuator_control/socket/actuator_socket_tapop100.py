@@ -2,7 +2,7 @@ import asyncio
 import os
 from kasa import Discover
 from actuator_control.base_actuator import Actuator
-from debug import Debugger
+from common.utils.debug import Debugger
 from dotenv import load_dotenv
 
 debug = Debugger()

@@ -1,7 +1,7 @@
 import RPi.GPIO as GPIO
 import time
 from actuator_control.actuator_manager import ActuatorManager
-from data_connector.connector_manager import ConnectorManager
+from common.data_connector.connector_manager import ConnectorManager
 from actuator_control.fan.fan_factory import load_fans
 from actuator_control.socket.socket_factory import load_sockets
 

@@ -1,7 +1,7 @@
 import json
 from actuator_control.fan.actuator_fan_pwm import FanPWM
 from actuator_control.fan.actuator_fan_digital import FanDigital
-from debug import Debugger
+from common.utils.debug import Debugger
 
 debug = Debugger()
 

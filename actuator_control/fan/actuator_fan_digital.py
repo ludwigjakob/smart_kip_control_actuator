@@ -1,6 +1,6 @@
 import RPi.GPIO as GPIO
 from actuator_control.base_actuator import Actuator
-from debug import Debugger
+from common.utils.debug import Debugger
 
 debug = Debugger()
 
