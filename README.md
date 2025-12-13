@@ -11,3 +11,16 @@ Hardware control service for refrigerator fans and smart sockets.
 ## Start the app with Docker
 ```bash
 ./start.sh
+```
+
+## License
+This project is licensed under the MIT License – see the [LICENSE](LICENSE) file for details.
+
+### Third-Party Licenses
+This project uses third-party libraries under the following licenses:
+- python-dotenv (BSD-3-Clause)
+- mysql-connector-python (GPL-2.0 with FOSS Exception)
+- RPi.GPIO (MIT)
+- influxdb-client (MIT)
+- python-kasa (Apache-2.0)
+- aiohttp (Apache-2.0)
