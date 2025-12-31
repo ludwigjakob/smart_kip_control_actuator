@@ -3,10 +3,8 @@ import os
 from kasa import Discover
 from actuator_control.base_actuator import Actuator
 from common.utils.debug import Debugger
-from dotenv import load_dotenv
 
 debug = Debugger()
-load_dotenv()
 
 class SocketTAPOp100(Actuator):
     def __init__(self, id: str, host: str, connector_manager):
